@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>Lista de Categorias</h1>
+
+{% if messages %}
+        {% for message  in messages %}
+           <div class="alert alert-danger">
+               {{ mesaage }}
+           </div> 
+        {% endfor %}
+{% endif %}
+
+{% if categorias %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Código
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th colspan="2" style="text-align: center">
+                Ações
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in categorias %}
+        <tr>
+            <td>
+                {{ c.id }}
+            </td>
+            <td>
+                {{ c.nome }}
+            </td>
+            <td>
+                {{ c.descricao }}
+            </td>
+            <td>
+                <a href="{% url 'tarefas:editar_categoria' c.id %}"  class="btn btn-info btn-xs">Editar</a>
+            </td>
+            <td>
+                <a href="{% url 'tarefas:delete_categoria' c.id %}" class="btn btn-danger btn-xs">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="alert alert-info">
+        <p>Não há nenhuma categoria cadastrada.</p>
+    </div>
+{% endif %}
+<a  href="{% url 'tarefas:nova_categoria' %}"  class="btn btn-primary btn-lg active" role="button">Adicionar Categoria</a>
+{% endblock body %}
