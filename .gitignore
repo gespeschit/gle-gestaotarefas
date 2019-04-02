@@ -1,0 +1,11 @@
+*.sqlite3
+*.db
+bin
+include
+lib
+pip-selfcheck.json
+vpjt_todo
+.vscode
+.env
+*.pyc
+*.pyo
